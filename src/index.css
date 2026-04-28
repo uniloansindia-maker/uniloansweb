@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #1a1a2e;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .lang-ta * {
+    font-family: 'Noto Sans Tamil', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gold hover:bg-gold-dark text-navy font-bold py-3 px-7 rounded-full
+      transition-all duration-300 shadow-lg hover:shadow-xl
+      transform hover:-translate-y-0.5 active:translate-y-0 active:shadow-md
+      focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-white text-white hover:bg-white hover:text-navy font-bold
+      py-3 px-7 rounded-full transition-all duration-300
+      focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+  }
+
+  .btn-navy {
+    @apply bg-navy hover:bg-navy-light text-white font-bold py-3 px-7 rounded-full
+      transition-all duration-300 shadow-lg hover:shadow-xl
+      transform hover:-translate-y-0.5 active:translate-y-0
+      focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 bg-white
+      focus:outline-none focus:ring-2 focus:ring-navy focus:border-transparent
+      transition-all duration-200 placeholder-gray-400 text-sm;
+  }
+
+  .label {
+    @apply block text-sm font-semibold text-gray-700 mb-1.5;
+  }
+
+  .card-shadow {
+    @apply bg-white rounded-2xl shadow-[0_4px_24px_rgba(0,51,102,0.08)]
+      hover:shadow-[0_8px_32px_rgba(0,51,102,0.15)] transition-shadow duration-300;
+  }
+
+  .section-badge {
+    @apply inline-block bg-gold-50 text-gold-dark text-xs font-bold uppercase
+      tracking-widest px-4 py-1.5 rounded-full mb-4;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-extrabold text-navy leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-gray-500 text-base md:text-lg leading-relaxed max-w-xl;
+  }
+}
+
+/* ── Hero slider dots ── */
+.dot {
+  @apply w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer;
+}
+.dot-active {
+  @apply w-8 bg-gold;
+}
+.dot-inactive {
+  @apply bg-white/50 hover:bg-white/75;
+}
+
+/* ── Floating widget ── */
+@keyframes bounceIn {
+  0%   { transform: scale(0.3); opacity: 0; }
+  60%  { transform: scale(1.05); }
+  80%  { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.bounce-in { animation: bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+/* ── Progress bar animation ── */
+@keyframes progressBar {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+.progress-bar {
+  animation: progressBar 5s linear forwards;
+}
+
+/* ── Subtle grid background ── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar          { width: 6px; }
+::-webkit-scrollbar-track    { background: #f1f5f9; }
+::-webkit-scrollbar-thumb    { background: #003366; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #004d99; }

@@ -1,8 +1,8 @@
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
-const PHONE_NUMBER    = '+918072138264';
-const WHATSAPP_NUMBER = '919566774351';
+const PHONE_NUMBER    = '+919944633059';
+const WHATSAPP_NUMBER = '919944633059';
 
 export default function ContactSection() {
   const { language } = useLanguage();

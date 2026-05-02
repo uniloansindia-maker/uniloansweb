@@ -2,7 +2,7 @@ import Logo from './Logo';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
-const PHONE_NUMBER = '+918072138264';
+const PHONE_NUMBER = '+919944633059';
 
 const SECTION_MAP = {
   'Home': 'home', 'About Us': 'features', 'Services': 'features',

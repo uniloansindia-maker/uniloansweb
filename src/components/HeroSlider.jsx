@@ -568,19 +568,27 @@ export default function HeroSlider() {
       </div>
 
       {/* Slide indicator dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2.5">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1 z-20">
         {slides.map((_, i) => (
-          <button key={i} onClick={() => goTo(i)} aria-label={`Slide ${i+1}`}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
-              i === current ? 'w-8' : 'w-2.5 bg-white/40 hover:bg-white/65'
-            }`}
-            style={i === current ? { background:'#D4AF37', boxShadow:'0 0 8px rgba(212,175,55,0.7)' } : {}} />
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Slide ${i+1}`}
+            className="p-2 flex items-center justify-center cursor-pointer"
+          >
+            <span
+              className={`block rounded-full transition-all duration-300 ${
+                i === current ? 'w-8 h-2.5' : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/70'
+              }`}
+              style={i === current ? { background:'#D4AF37', boxShadow:'0 0 8px rgba(212,175,55,0.7)' } : {}}
+            />
+          </button>
         ))}
       </div>
 
       {/* Prev arrow */}
       <button onClick={() => goTo((current - 1 + TOTAL) % TOTAL)}
-        className="hidden md:flex absolute left-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full
+        className="hidden md:flex absolute left-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full z-20
           items-center justify-center text-white text-xl font-bold border border-white/20
           backdrop-blur-sm hover:border-white/50 hover:scale-110 transition-all duration-200"
         style={{ background:'rgba(255,255,255,0.11)' }} aria-label="Previous">
@@ -589,7 +597,7 @@ export default function HeroSlider() {
 
       {/* Next arrow */}
       <button onClick={() => { next(); setProgress(0); }}
-        className="hidden md:flex absolute right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full
+        className="hidden md:flex absolute right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full z-20
           items-center justify-center text-white text-xl font-bold border border-white/20
           backdrop-blur-sm hover:border-white/50 hover:scale-110 transition-all duration-200"
         style={{ background:'rgba(255,255,255,0.11)' }} aria-label="Next">

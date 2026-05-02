@@ -3,8 +3,9 @@ import Logo from './Logo';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
-const PHONE_NUMBER    = '+918072138264';
-const WHATSAPP_NUMBER = '919566774351';
+const PHONE_NUMBER    = '+919944633059';
+const PHONE_NUMBER_2  = '+918072138264';
+const WHATSAPP_NUMBER = '919944633059';
 
 export default function FloatingWidget() {
   const { language } = useLanguage();
@@ -26,6 +27,19 @@ export default function FloatingWidget() {
           {/* Call */}
           <a
             href={`tel:${PHONE_NUMBER}`}
+            className="flex items-center gap-3 w-full bg-navy hover:bg-navy-light text-white px-4 py-3 rounded-xl
+              font-semibold text-sm transition-colors duration-200 mb-1"
+          >
+            <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-base flex-shrink-0">
+              📞
+            </span>
+            <div className="text-left">
+              <div className="text-[10px] text-white/70 font-normal">{t.call}</div>
+              <div className="text-xs font-bold">+91 99446 33059</div>
+            </div>
+          </a>
+          <a
+            href={`tel:${PHONE_NUMBER_2}`}
             className="flex items-center gap-3 w-full bg-navy hover:bg-navy-light text-white px-4 py-3 rounded-xl
               font-semibold text-sm transition-colors duration-200 mb-2"
           >

@@ -18,47 +18,67 @@ const IMG = {
   slide3: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1920&q=80',
 };
 
-/* ── Bank data — direct Wikimedia / official logo URLs ── */
+/* ── Bank data — local logos from /public/banks/ ── */
 const BANKS = [
   {
-    id: 'sbi',    name: 'SBI',         full: 'State Bank of India',
+    id: 'sbi',    name: 'SBI',           full: 'State Bank of India',
     abbr: 'SBI',  bg: '#1a3a8b', text: '#fff',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/State_Bank_of_India_logo.svg/1200px-State_Bank_of_India_logo.svg.png',
+    logoUrl: '/banks/sbi.png',
   },
   {
-    id: 'lichfl', name: 'LIC HFL',     full: 'LIC Housing Finance',
+    id: 'lichfl', name: 'LIC HFL',       full: 'LIC Housing Finance',
     abbr: 'LIC',  bg: '#c47f00', text: '#fff',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/LIC_of_India_logo.svg/1200px-LIC_of_India_logo.svg.png',
+    logoUrl: '/banks/lic.png',
   },
   {
-    id: 'hdfc',   name: 'HDFC Bank',   full: 'HDFC Bank Ltd',
+    id: 'hdfc',   name: 'HDFC Bank',     full: 'HDFC Bank Ltd',
     abbr: 'HDFC', bg: '#004c8f', text: '#fff',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/HDFC_Bank_Logo.svg/1200px-HDFC_Bank_Logo.svg.png',
+    logoUrl: '/banks/hdfc.png',
   },
   {
-    id: 'icici',  name: 'ICICI Bank',  full: 'ICICI Bank Ltd',
+    id: 'icici',  name: 'ICICI Bank',    full: 'ICICI Bank Ltd',
     abbr: 'ICICI',bg: '#c8401a', text: '#fff',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/ICICI_Bank_Logo.svg/1200px-ICICI_Bank_Logo.svg.png',
+    logoUrl: '/banks/icici.png',
   },
   {
-    id: 'axis',   name: 'Axis Bank',   full: 'Axis Bank Ltd',
+    id: 'axis',   name: 'Axis Bank',     full: 'Axis Bank Ltd',
     abbr: 'AXIS', bg: '#8b1a4a', text: '#fff',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Axis_Bank_logo.svg/1200px-Axis_Bank_logo.svg.png',
+    logoUrl: '/banks/axis.png',
   },
   {
-    id: 'ib',     name: 'Indian Bank', full: 'Indian Bank',
+    id: 'ib',     name: 'Indian Bank',   full: 'Indian Bank',
     abbr: 'IB',   bg: '#1a4a8b', text: '#fff',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Indian_Bank_logo.png/250px-Indian_Bank_logo.png',
+    logoUrl: '/banks/indian.png',
   },
   {
-    id: 'canara', name: 'Canara Bank', full: 'Canara Bank',
+    id: 'canara', name: 'Canara Bank',   full: 'Canara Bank',
     abbr: 'CAN',  bg: '#1a6b3a', text: '#fff',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Canara_Bank_Logo.svg/1200px-Canara_Bank_Logo.svg.png',
+    logoUrl: '/banks/canara.png',
   },
   {
-    id: 'kvb',    name: 'KVB',         full: 'Karur Vysya Bank',
+    id: 'kvb',    name: 'KVB',           full: 'Karur Vysya Bank',
     abbr: 'KVB',  bg: '#9a1428', text: '#fff',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Karur_Vysya_Bank_logo.png',
+    logoUrl: '/banks/kvb.png',
+  },
+  {
+    id: 'bob',    name: 'Bank of Baroda',full: 'Bank of Baroda',
+    abbr: 'BOB',  bg: '#f47920', text: '#fff',
+    logoUrl: '/banks/bob.png',
+  },
+  {
+    id: 'boi',    name: 'Bank of India', full: 'Bank of India',
+    abbr: 'BOI',  bg: '#003f7f', text: '#fff',
+    logoUrl: '/banks/boi.png',
+  },
+  {
+    id: 'pnb',    name: 'PNB Housing',   full: 'PNB Housing Finance',
+    abbr: 'PNB',  bg: '#e31e24', text: '#fff',
+    logoUrl: '/banks/pnb.png',
+  },
+  {
+    id: 'sib',    name: 'South Indian',  full: 'South Indian Bank',
+    abbr: 'SIB',  bg: '#1a3a8b', text: '#fff',
+    logoUrl: '/banks/sib.png',
   },
 ];
 
@@ -374,8 +394,8 @@ function Slide2({ data, onApply }) {
           </p>
         </div>
 
-        {/* ── Bank Grid 2×4 (8 banks) ── */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto mb-10">
+        {/* ── Bank Grid — 12 banks (2×6 mobile, 4×3 desktop) ── */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl mx-auto mb-10">
           {BANKS.map(bank => (
             <BankCard key={bank.id} bank={bank} onApply={onApply} />
           ))}

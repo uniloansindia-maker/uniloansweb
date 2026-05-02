@@ -2,6 +2,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 const PHONE_NUMBER    = '+919944633059';
+const PHONE_NUMBER_2  = '+918072138264';
 const WHATSAPP_NUMBER = '919944633059';
 
 export default function ContactSection() {
@@ -24,18 +25,20 @@ export default function ContactSection() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {/* Phone */}
-          <a
-            href={`tel:${PHONE_NUMBER}`}
-            className="group bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/15 rounded-2xl p-6 text-center
-              transition-all duration-300 hover:-translate-y-1 hover:border-gold"
-          >
+          <div className="group bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/15 rounded-2xl p-6 text-center
+            transition-all duration-300 hover:-translate-y-1 hover:border-gold">
             <div className="w-14 h-14 rounded-full bg-gold/20 flex items-center justify-center mx-auto mb-4 text-3xl group-hover:scale-110 transition-transform">
               📞
             </div>
             <h3 className="text-white font-bold mb-1">{t.callBtn}</h3>
             <p className="text-white/60 text-sm mb-3">{language === 'en' ? 'Mon–Sat, 9 AM – 7 PM' : 'திங்கள்–சனி, காலை 9 – மாலை 7'}</p>
-            <span className="text-gold font-semibold text-sm">{t.phone}</span>
-          </a>
+            <a href={`tel:${PHONE_NUMBER}`} className="block text-gold font-semibold text-sm hover:text-gold/80 transition-colors">
+              +91 99446 33059
+            </a>
+            <a href={`tel:${PHONE_NUMBER_2}`} className="block text-gold font-semibold text-sm hover:text-gold/80 transition-colors mt-1">
+              +91 80721 38264
+            </a>
+          </div>
 
           {/* WhatsApp */}
           <a

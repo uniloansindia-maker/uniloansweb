@@ -2,7 +2,8 @@ import Logo from './Logo';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
-const PHONE_NUMBER = '+919944633059';
+const PHONE_NUMBER   = '+919944633059';
+const PHONE_NUMBER_2 = '+918072138264';
 
 const SECTION_MAP = {
   'Home': 'home', 'About Us': 'features', 'Services': 'features',
@@ -37,7 +38,11 @@ export default function Footer() {
               </div>
               <a href={`tel:${PHONE_NUMBER}`} className="flex items-center gap-2 text-sm text-white/70 hover:text-gold transition-colors">
                 <span className="text-gold">📞</span>
-                <span>{t.phone}</span>
+                <span>+91 99446 33059</span>
+              </a>
+              <a href={`tel:${PHONE_NUMBER_2}`} className="flex items-center gap-2 text-sm text-white/70 hover:text-gold transition-colors">
+                <span className="text-gold">📞</span>
+                <span>+91 80721 38264</span>
               </a>
               <a href={`mailto:${t.email}`} className="flex items-center gap-2 text-sm text-white/70 hover:text-gold transition-colors">
                 <span className="text-gold">✉️</span>

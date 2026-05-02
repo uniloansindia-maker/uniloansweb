@@ -518,29 +518,60 @@ function Slide3({ data, onApply }) {
 ══════════════════════════════════════════════════════ */
 const TOTAL = 3;
 
+const DRAG_THRESHOLD = 50; // px needed to trigger a slide change
+
 export default function HeroSlider() {
   const { language } = useLanguage();
   const t = translations[language].hero;
 
-  const [current,  setCurrent]  = useState(0);
-  const [paused,   setPaused]   = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [current,    setCurrent]    = useState(0);
+  const [paused,     setPaused]     = useState(false);
+  const [progress,   setProgress]   = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const timerRef    = useRef(null);
   const progressRef = useRef(null);
+  const dragStartX  = useRef(null);
 
   const next  = useCallback(() => setCurrent(c => (c + 1) % TOTAL), []);
+  const prev  = useCallback(() => setCurrent(c => (c - 1 + TOTAL) % TOTAL), []);
   const goTo  = useCallback((i) => { setCurrent(i); setProgress(0); }, []);
 
   useEffect(() => {
     if (paused) return;
     setProgress(0);
-    const ms = INTERVALS[current];           // per-slide duration
+    const ms = INTERVALS[current];
     const start = Date.now();
     progressRef.current = setInterval(
       () => setProgress(Math.min(((Date.now() - start) / ms) * 100, 100)), 50);
     timerRef.current = setTimeout(next, ms);
     return () => { clearInterval(progressRef.current); clearTimeout(timerRef.current); };
   }, [current, paused, next]);
+
+  const getClientX = (e) => e.touches ? e.touches[0].clientX : e.clientX;
+
+  const onDragStart = (e) => {
+    dragStartX.current = getClientX(e);
+    setIsDragging(true);
+    setPaused(true);
+  };
+
+  const onDragEnd = (e) => {
+    if (dragStartX.current === null) return;
+    const delta = getClientX(e) - dragStartX.current;
+    if (Math.abs(delta) >= DRAG_THRESHOLD) {
+      delta < 0 ? next() : prev();
+      setProgress(0);
+    }
+    dragStartX.current = null;
+    setIsDragging(false);
+    setPaused(false);
+  };
+
+  const onDragCancel = () => {
+    dragStartX.current = null;
+    setIsDragging(false);
+    setPaused(false);
+  };
 
   const scrollTo = id => document.getElementById(id)?.scrollIntoView({ behavior:'smooth' });
 
@@ -551,14 +582,21 @@ export default function HeroSlider() {
   ];
 
   return (
-    <section id="home" className="relative select-none"
-             onMouseEnter={() => setPaused(true)}
-             onMouseLeave={() => setPaused(false)}
-             onFocus={() => setPaused(true)}
-             onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false); }}>
+    <section
+      id="home"
+      className="relative select-none"
+      style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+      onMouseDown={onDragStart}
+      onMouseUp={onDragEnd}
+      onMouseLeave={onDragCancel}
+      onTouchStart={onDragStart}
+      onTouchEnd={onDragEnd}
+      onFocus={() => setPaused(true)}
+      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false); }}
+    >
 
       {/* Active slide */}
-      <div key={current} className="slide-enter">{slides[current]}</div>
+      <div key={current} className="slide-enter" style={{ pointerEvents: isDragging ? 'none' : 'auto' }}>{slides[current]}</div>
 
       {/* Progress bar */}
       <div className="absolute bottom-0 left-0 right-0 h-1"
